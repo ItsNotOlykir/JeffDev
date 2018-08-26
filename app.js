@@ -14,28 +14,18 @@ client.supportServer = settings.SupportServer
 client.ownerID = settings.ownerID
 // Command handler
 fs.readdir("./commands/", (err, files) => {
-	try {
-		let props = require(`./commands/${files}`);
-		console.log(`Loading Command: ${props.info.name}. 👌`);
+	if (err) console.error(err);
+	console.log(`Loading a total of ${files.length} commands.`);
+	files.forEach(f => {
+		const props = require(`./commands/${f}`);
+		console.log(`Loading Command: ${props.info.name}.`);
 		client.commands.set(props.info.name, props);
-		props.info.aliases.forEach(alias => {
-		  client.aliases.set(alias, props.info.name);
-		});
-	  } catch (err) {
-		console.log(`Unable to load command ${files}: ${err}`);
-	  }
-	// if (err) console.error(err);
-	// console.log(`Loading a total of ${files.length} commands.`);
-	// files.forEach(f => {
-	// 	const props = require(`./commands/${f}`);
-	// 	console.log(`Loading Command: ${props.info.name}.`);
-	// 	client.commands.set(props.info.name, props);
 
-	// 	props.info.aliases.forEach(alias => {
-	// 		client.aliases.set(alias, props.info.name);
-	// 	  });
+		// props.info.aliases.forEach(alias => {
+		// 	client.aliases.set(alias, props.info.name);
+		//   });
 		
-	// });
+	});
 });
 // Function handler
 fs.readdir(`./functions/`, (err, files) => {
