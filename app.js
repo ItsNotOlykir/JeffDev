@@ -21,7 +21,7 @@ fs.readdir("./commands/", (err, files) => {
 		console.log(`Loading Command: ${props.info.name}.`);
 		client.commands.set(props.info.name, props);
 
-		props.info.alias.forEach(alias => {
+		props.info.aliases.forEach(alias => {
 			client.aliases.set(alias, props.help.name);
 		  });
 		
