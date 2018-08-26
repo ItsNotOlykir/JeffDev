@@ -16,13 +16,13 @@ client.ownerID = settings.ownerID
 fs.readdir("./commands/", (err, files) => {
 	try {
 		let props = require(`./commands/${files}`);
-		client.log("log", `Loading Command: ${props.info.name}. 👌`);
+		console.log("log", `Loading Command: ${props.info.name}. 👌`);
 		client.commands.set(props.info.name, props);
 		props.info.aliases.forEach(alias => {
 		  client.aliases.set(alias, props.info.name);
 		});
 	  } catch (err) {
-		client.log(`Unable to load command ${files}: ${err}`);
+		console.log(`Unable to load command ${files}: ${err}`);
 	  }
 	// if (err) console.error(err);
 	// console.log(`Loading a total of ${files.length} commands.`);
