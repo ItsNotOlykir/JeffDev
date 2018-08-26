@@ -12,7 +12,7 @@ client.aliases = new Discord.Collection();
 client.functions = new Discord.Collection();
 client.supportServer = settings.SupportServer
 client.ownerID = settings.ownerID
-client.musicQueue = [];
+client.musicQueue = new Collection()
 
 
 // Command handler
