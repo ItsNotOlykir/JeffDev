@@ -20,9 +20,7 @@ fs.readdir("./commands/", (err, files) => {
 		const props = require(`./commands/${f}`);
 		console.log(`Loading Command: ${props.info.name}.`);
 		client.commands.set(props.info.name, props);
-		for (const alias of props.info.aliases) {
-			client.aliases.set(alias, props)
-		}
+
 		
 	});
 });
