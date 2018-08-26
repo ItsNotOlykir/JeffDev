@@ -11,10 +11,9 @@ module.exports = message => {
 		.toLowerCase();
 	// Define command paramaters
 	const params = message.content.split(" ").slice(1);
-	//const cmd = client.commands.get(command) || client.commands.get(client.aliases.get(command));
+	cmd = client.commands.get(command) || client.commands.get(client.aliases.get(command));
 	if (client.commands.has(command)) {
-		cmd = client.commands.get(command) || client.commands.get(client.aliases.get(command));
-	}
+		cmd = client.commands.get(command);
 	// If command, run that command
 	if (cmd) {
 		cmd.run(client, message, params);
