@@ -16,7 +16,7 @@ client.ownerID = settings.ownerID
 fs.readdir("./commands/", (err, files) => {
 	try {
 		let props = require(`./commands/${files}`);
-		console.log("log", `Loading Command: ${props.info.name}. 👌`);
+		console.log(`Loading Command: ${props.info.name}. 👌`);
 		client.commands.set(props.info.name, props);
 		props.info.aliases.forEach(alias => {
 		  client.aliases.set(alias, props.info.name);
