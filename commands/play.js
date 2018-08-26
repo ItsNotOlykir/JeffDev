@@ -3,10 +3,11 @@ const ytdl = require('ytdl-core')
 exports.run = (client, message, params) => {
 if(!params) {
     message.channel.send(`Please specify a song!`)
+    return
 } else {
-    var url = message.content.split(" ")
+    var url = params
     var time = '1:20'
-    client.musicQueue.set("params", [url, time])
+    client.musicQueue.set(params, [url, time])
 }
 
 };
@@ -14,6 +15,6 @@ if(!params) {
 exports.info = {
 	name: "play",
 	desc: "Play a song!",
-	use: "play \'song\'",
+	use: "play \'song || url\'",
 	aliases: []
 };
