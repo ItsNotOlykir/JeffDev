@@ -1,5 +1,6 @@
 const ytdl = require('ytdl-core')
-
+const YouTube = require('simple-youtube-api');
+const youtube = new YouTube('  Y  o  u  r     A  p  i     K  e  y  ');
 exports.run = (client, message, params) => {
 if(!params) {
     message.channel.send(`Please specify a song!`)
@@ -7,7 +8,11 @@ if(!params) {
 } else {
     var url = params
     var time = '1:20'
-    client.musicQueue.set(params, [url, time])
+
+    youtube.searchVideos(params.join(""), 1).then(results => {
+    client.musicQueue.set(results[0].title, [url, time])
+    console.log(results)
+})
 }
 
 };
