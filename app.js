@@ -22,7 +22,7 @@ fs.readdir("./commands/", (err, files) => {
 		client.commands.set(props.info.name, props);
 
 		props.info.aliases.forEach(alias => {
-			client.aliases.set(alias, props.help.name);
+			client.aliases.set(alias, props.info.name);
 		  });
 		
 	});
