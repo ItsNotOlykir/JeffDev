@@ -10,5 +10,6 @@ exports.run = (client, message, params) => {
 exports.info = {
 	name: "announce",
 	desc: "Annouce something to the server",
-	use: `-announce \"message\"`
+	use: `-announce \"message\"`,
+	aliases: []
 }
