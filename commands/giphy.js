@@ -4,6 +4,7 @@ exports.run = (client, message, params) => {
 	if(!search) {
 		message.channel.send('Please specify a search!')
 	} else {
+		try {
 	snek.get(`http://api.giphy.com/v1/stickers/search?q=${search}&api_key=${client.settings.keys.giphy}`)
 		.then(r => message.channel.send({
 			embed: {
@@ -13,7 +14,11 @@ exports.run = (client, message, params) => {
 				}
 			}
 		}));
-}}
+
+	 } catch(err) {
+		 message.channel.send(`It seems there was no image for that search!`)
+	 }
+	}}
 
 exports.info = {
 	name: "giphy",
