@@ -3,7 +3,6 @@ const Discord = require("discord.js");
 const client = new Discord.Client();
 const settings = require("./config.json");
 const fs = require("fs");
-const hastebin = require("hastebin-gen");
 const snekfetch = require("snekfetch");
 require("./util/eventLoader")(client);
 // Set client vars
@@ -21,7 +20,10 @@ fs.readdir("./commands/", (err, files) => {
 		const props = require(`./commands/${f}`);
 		console.log(`Loading Command: ${props.info.name}.`);
 		client.commands.set(props.info.name, props);
-		client.aliases.set(props.info.aliases.forEach(a => a), props)
+		for (const alias of props.info.aliases) {
+			client.aliases.set(alias, props)
+		}
+		
 	});
 });
 // Function handler
