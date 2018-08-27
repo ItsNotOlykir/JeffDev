@@ -12,6 +12,7 @@ if(!params) {
     youtube.searchVideos(params.join(""), 1).then(results => {
     client.musicQueue.set(results[0].title, [url, time])
     console.log(results)
+    message.channel.send(`Now playing: ${results[0].title} (https://youtube.com/watch?v=${results[0].id}`)
 })
 }
 
