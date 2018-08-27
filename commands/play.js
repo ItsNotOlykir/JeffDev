@@ -12,9 +12,9 @@ if(!params) {
     youtube.searchVideos(params.join(""), 1).then(results => {
     client.musicQueue.set(results[0].title, [url, time])
     console.log(results)
-    if(client.musicQueue < 1) {
+    if(client.musicQueue.size < 1) {
         message.channel.send(`${results[0].title} has been queued!`)
-        return
+        
     } else {
     message.channel.send(`Now playing: ${results[0].title} (https://youtube.com/watch?v=${results[0].id}`)
     }
