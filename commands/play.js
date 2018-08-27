@@ -1,6 +1,6 @@
 const ytdl = require('ytdl-core')
 const YouTube = require('simple-youtube-api');
-const youtube = new YouTube('  Y  o  u  r     A  p  i     K  e  y  ');
+const youtube = new YouTube(client.settings.keys.youtube);
 exports.run = (client, message, params) => {
 if(!params) {
     message.channel.send(`Please specify a song!`)

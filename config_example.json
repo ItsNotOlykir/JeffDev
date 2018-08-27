@@ -4,6 +4,7 @@
   "SupportServer": "YourSupportServer",
   "ownerID": "YourID",
   "keys": {
-    "giphy": "YourApiKey"
+    "giphy": "YourApiKey",
+    "youtube": ""
   }
 }
