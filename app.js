@@ -1,44 +1,46 @@
-// Require all modules
-const Discord = require("discord.js");
-const client = new Discord.Client();
-const settings = require("./config.json");
-const fs = require("fs");
-const snekfetch = require("snekfetch");
+// Edited by AceBoi
+
+const { Client, Collection } = require("discord.js");
+const { readdir, stat } = require("fs").promises;
+const path = require('path');
+
+const client = new Client();
 require("./util/eventLoader")(client);
-// Set client vars
-client.settings = settings;
-client.commands = new Discord.Collection();
-client.aliases = new Discord.Collection();
-client.functions = new Discord.Collection();
-client.supportServer = settings.SupportServer
-client.ownerID = settings.ownerID
-client.musicQueue = new Discord.Collection()
 
+client.settings = require("./config.json");
+client.commands = new Collection();
+client.aliases = new Collection();
+client.functions = new Collection();
+client.musicQueue = new Collection();
 
-// Command handler
-fs.readdir("./commands/", (err, files) => {
-	if (err) console.error(err);
-	console.log(`Loading a total of ${files.length} commands.`);
-	files.forEach(f => {
-		const props = require(`./commands/${f}`);
-		console.log(`Loading Command: ${props.info.name}.`);
-		client.commands.set(props.info.name, props);
+const commandsDir = './commands/';
+const functionsDir = './functions/';
 
-		// props.info.aliases.forEach(alias => {
-		// 	client.aliases.set(alias, props.info.name);
-		//   });
-		
-	});
+async function LoadFiles(dir) {
+    const files = await readdir(dir);
+    const arr = [];
+    for (const file of files) {
+	const filePath = path.join(dir, file);
+	const stats = await stat(filePath);
+        if (file.endsWith('.js') && stats.isFile()) {
+	    arr.push(require(filePath));
+	}
+    }
+    return arr;
 });
-// Function handler
-fs.readdir(`./functions/`, (err, files) => {
-	if (err) console.log(err);
-	console.log(`Loading a total of ${files.length} functions.`);
-	files.forEach(e => {
-		var functions = require(`./functions/${e}`);
-		console.log(`Loading function: ${functions.info.name}`);
-		client.functions.set(functions.info.name, functions);
-	});
+
+loadFiles(commandsDir).then(files => {
+    console.log(`Loaded ${files.length} commands`);
+    for (const command of files) {
+	client.commands.set(command.info.name, command);    
+    }
 });
-// Bot login
-client.login(settings.token);
+
+loadFiles(functionsDir).then(files => {
+    console.log(`Loaded ${files.length} functions`);
+    for (const func of files) {
+	client.functions.set(func.info.name, func);
+    }
+});
+
+client.login(client.settings.token);
