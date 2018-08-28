@@ -12,6 +12,11 @@ exports.run = (client, msg, args) => {
 		msg.mentions.members.first() ||
 		msg.guild.members.get(args[0]) ||
 		msg.member;
+	if(!member) {
+		message.channel.send(`Please specify a user!`)
+		return
+	}
+
 	let bot;
 	if (member.user.bot === true) {
 		bot = "Yes";
