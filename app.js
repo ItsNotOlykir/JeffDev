@@ -27,7 +27,7 @@ async function LoadFiles(dir) {
 	}
     }
     return arr;
-});
+};
 
 loadFiles(commandsDir).then(files => {
     console.log(`Loaded ${files.length} commands`);
