@@ -29,14 +29,14 @@ async function LoadFiles(dir) {
     return arr;
 };
 
-loadFiles(commandsDir).then(files => {
+LoadFiles(commandsDir).then(files => {
     console.log(`Loaded ${files.length} commands`);
     for (const command of files) {
 	client.commands.set(command.info.name, command);    
     }
 });
 
-loadFiles(functionsDir).then(files => {
+LoadFiles(functionsDir).then(files => {
     console.log(`Loaded ${files.length} functions`);
     for (const func of files) {
 	client.functions.set(func.info.name, func);
