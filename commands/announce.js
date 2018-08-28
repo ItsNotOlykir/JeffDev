@@ -1,5 +1,5 @@
 exports.run = (client, message, params) => {
-	if(params < 0) {
+	if(!params.join(" ")) {
 		message.channel.send('Please specify an annoucment!')
 		return
 	}
