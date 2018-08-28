@@ -8,7 +8,7 @@ if(!params) {
 } else {
     var url = params
     var time = '1:20'
-
+    let voiceChannel = message.member.voiceChannel
     youtube.searchVideos(params.join(""), 1).then(results => {
 
     if(client.musicQueue.size < 1) {

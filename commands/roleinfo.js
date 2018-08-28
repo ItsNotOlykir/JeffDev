@@ -4,6 +4,10 @@ require("moment-duration-format");
 exports.run = (client, message, params) => {
 	const role = message.guild.roles.get(params[0]) || message.guild.roles.find("name", params[0])
 
+	if(!role) {
+		message.channel.send('Please select a valid role!')
+	} else {
+
 	const embed = new Discord.RichEmbed().setColor(2197497)
 		.setAuthor(role.name, message.guild.iconURL)
 		.addField("User Count!", `${role.members.size} users!`, true)
@@ -12,7 +16,7 @@ exports.run = (client, message, params) => {
 	message.channel.send({
 		embed
 	});
-
+	}
 }
 exports.info = {
 	name: "roleinfo",
