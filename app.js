@@ -20,7 +20,7 @@ async function LoadFiles(dir) {
     const files = await readdir(dir);
     const arr = [];
     for (const file of files) {
-	const filePath = path.join(dir, file);
+        const filePath = path.join(__dirname, dir, file);
 	const stats = await stat(filePath);
         if (file.endsWith('.js') && stats.isFile()) {
 	    arr.push(require(filePath)); 
