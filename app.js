@@ -34,18 +34,15 @@ LoadFiles(commandsDir).then(files => {
     for (const command of files) {
 	client.commands.set(command.info.name, command);    
     }
-}).catch(err) {
-    console.error(err)
-}
+}).catch(console.error)
+
 
 LoadFiles(functionsDir).then(files => {
     console.log(`Loaded ${files.length} functions`);
     for (const func of files) {
 	client.functions.set(func.info.name, func);
     }
-}).catch(err) {
-    console.error(err)
-}
+}).catch(console.error)
 
 client.login(client.settings.token);
 console.log(client.commands)
