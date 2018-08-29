@@ -28,7 +28,7 @@ async function LoadFiles(dir) {
     }
     return arr;
 };
-console.log(client.commands)
+
 LoadFiles(commandsDir).then(files => {
     console.log(`Loaded ${files.length} commands`);
     for (const command of files) {
@@ -44,3 +44,4 @@ LoadFiles(functionsDir).then(files => {
 });
 
 client.login(client.settings.token);
+console.log(client.commands)
