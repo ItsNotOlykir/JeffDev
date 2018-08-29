@@ -23,12 +23,12 @@ async function LoadFiles(dir) {
 	const filePath = path.join(dir, file);
 	const stats = await stat(filePath);
         if (file.endsWith('.js') && stats.isFile()) {
-	    arr.push(require(filePath));
+	    arr.push(require(filePath)); 
 	}
     }
     return arr;
 };
-
+console.log(client.commands)
 LoadFiles(commandsDir).then(files => {
     console.log(`Loaded ${files.length} commands`);
     for (const command of files) {
