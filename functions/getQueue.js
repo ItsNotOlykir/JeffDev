@@ -1,8 +1,8 @@
-exports.run = (id, info) => {
+exports.run = (id) => {
 	queue = client.musicQueue
 	id = id
-	info = info
-	if(!id || !info) {
+
+	if(!id) {
 		return "Missing arguments"
 	} 
 	return queue.get(id)
