@@ -45,4 +45,3 @@ LoadFiles(functionsDir).then(files => {
 }).catch(console.error)
 
 client.login(client.settings.token);
-console.log(client.commands)
