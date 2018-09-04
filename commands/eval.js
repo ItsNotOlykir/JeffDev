@@ -45,6 +45,6 @@ exports.run = (client, message, params) => {
 exports.info = {
 	name: "eval",
 	desc: "evaluate code",
-	use: "-code \'code\'",
+	use: "-eval \'code\'",
 	aliases: []
 };
