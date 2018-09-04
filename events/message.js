@@ -16,6 +16,8 @@ module.exports = message => {
 	}
 	// If command, run that command
 	if (cmd) {
+
 		cmd.run(client, message, params);
+
 	}
 };

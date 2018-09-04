@@ -21,8 +21,8 @@ exports.run = (client, message) => {
 };
 
 exports.info = {
-	name: "stats",
-	desc: "Get the bot's status!",
-	use: '-stats'
+	name: "NAME",
+	desc: "DESC",
+	use: '-NAME (PARAMS)'
 };
 ```
