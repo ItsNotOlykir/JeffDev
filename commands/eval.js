@@ -19,24 +19,10 @@ exports.run = (client, message, params) => {
 				}).includes(client.token.toUpperCase())) {
 				message.channel.send("Unable to eval that code!");
 			} else {
-				message.channel.send({
-					embed: {
-						title: "Success!",
-						color: "1048335",
-						description: `Input: :inbox_tray:\n\`\`\`js\n${code}\`\`\`\nOutput: :outbox_tray: \`\`\`js\n${util.inspect(evaled, {
-							depth: 0}
-							)}\`\`\``
-					}
-				});
-			}
+                message.channel.send(`\`\`\`\n${util.inspect(evaled, {depth: 0})}\`\`\``)
+            }
 		}).catch(err => {
-			message.channel.send({
-				embed: {
-					title: "Error!",
-					color: "16715535",
-					description: `Input: :inbox_tray:\n\`\`\`js\n${code}\`\`\`\nOutput: :outbox_tray:\n\`\`\`js\n${err}\`\`\``
-				}
-			});
+			console.error(err)
 		});
 	}
 };
