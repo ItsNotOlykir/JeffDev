@@ -1,30 +1,16 @@
 exports.run = (client, message, params) => {
-	if (message.author.id !== client.ownerID)
-		return;
-	const code = params.join(" ");
-	const util = require("util");
-	if (code < 1) {
-		message.channel.send("Please input some code!")
-	} else
-	if (code.includes("client.token")) {
-		message.channel.send("Unable to eval that code!");
-	} else {
-		new Promise(r => r(eval(code))).then(evaled => {
-			if (util.inspect(evaled, {
-					depth: 0
-				}).includes(client.token) || util.inspect(evaled, {
-					depth: 0
-				}).includes(client.token.toLowerCase()) || util.inspect(evaled, {
-					depth: 0
-				}).includes(client.token.toUpperCase())) {
-				message.channel.send("Unable to eval that code!");
-			} else {
-                message.channel.send(`\`\`\`\n${util.inspect(evaled, {depth: 0})}\`\`\``)
-            }
-		}).catch(err => {
-			console.error(err)
-		});
-	}
+    const util = require('util');
+    if(message.author.id !== client.settings.ownerID) return
+    async function SomeEvalFunction(code) {
+        let evaled;
+        try {
+            evaled = await eval(code);
+        } catch (err) {
+            evaled = err;
+        }
+        const output = util.inspect(evaled, { depth: 0 });
+        message.channel.send(`\`\`\`\n${output}\`\`\``)
+    }
 };
 
 exports.info = {
