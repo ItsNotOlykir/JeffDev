@@ -1,20 +1,18 @@
-exports.run = (client, message, params) => {
-    const util = require('util');
-    if(message.author.id !== client.settings.ownerID) return
-    async function SomeEvalFunction(code) {
-        let evaled;
-        try {
-            evaled = await eval(code);
-        } catch (err) {
-            evaled = err;
-        }
-        const output = util.inspect(evaled, { depth: 0 });
-        message.channel.send(`\`\`\`\n${output}\`\`\``)
+exports.run = async (client, message, params) => {
+    if (message.author.id !== client.settings.ownerID) return;
+    const msg = await message.channel.send('Evaluating...');
+    let evaled;
+    try {
+        evaled = await eval(code);
+    } catch (err) {
+        evaled = err;
     }
+    const output = util.inspect(evaled, { depth: 0 });
+    msg.edit(`\`\`\`js\n${output}\n\`\`\``);
 };
 
 exports.info = {
-	name: "eval",
-	desc: "evaluate code",
-	use: "-code \'code\'"
+    name: "eval",
+    desc: "evaluate code",
+    use: "-code \'code\'"
 };
