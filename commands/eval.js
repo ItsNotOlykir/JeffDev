@@ -8,7 +8,9 @@ exports.run = async (client, message, params) => {
     } catch (err) {
         evaled = err;
     }
-    const output = require("util").inspect(evaled, { depth: 0 });
+    const output = require("util").inspect(evaled, {
+        depth: 0
+    });
     msg.edit(`\`\`\`js\n${output}\n\`\`\``);
 };
 

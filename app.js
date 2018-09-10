@@ -1,7 +1,13 @@
 // Edited by AceBoi
 
-const { Client, Collection } = require("discord.js");
-const { readdir, stat } = require("fs").promises;
+const {
+    Client,
+    Collection
+} = require("discord.js");
+const {
+    readdir,
+    stat
+} = require("fs").promises;
 const path = require('path');
 
 const client = new Client();
@@ -21,10 +27,10 @@ async function LoadFiles(dir) {
     const arr = [];
     for (const file of files) {
         const filePath = path.join(__dirname, dir, file);
-	const stats = await stat(filePath);
+        const stats = await stat(filePath);
         if (file.endsWith('.js') && stats.isFile()) {
-	    arr.push(require(filePath)); 
-	}
+            arr.push(require(filePath));
+        }
     }
     return arr;
 };
@@ -32,7 +38,7 @@ async function LoadFiles(dir) {
 LoadFiles(commandsDir).then(files => {
     console.log(`Loaded ${files.length} commands`);
     for (const command of files) {
-	client.commands.set(command.info.name, command);    
+        client.commands.set(command.info.name, command);
     }
 }).catch(console.error)
 
@@ -40,7 +46,7 @@ LoadFiles(commandsDir).then(files => {
 LoadFiles(functionsDir).then(files => {
     console.log(`Loaded ${files.length} functions`);
     for (const func of files) {
-	client.functions.set(func.info.name, func);
+        client.functions.set(func.info.name, func);
     }
 }).catch(console.error)
 
