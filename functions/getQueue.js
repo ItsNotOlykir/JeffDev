@@ -1,4 +1,5 @@
 exports.run = (id) => {
+	client = message.client
 	queue = client.musicQueue
 	id = id
 
