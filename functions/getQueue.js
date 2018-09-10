@@ -1,12 +1,17 @@
 exports.run = (id) => {
-	client = message.client
 	queue = client.musicQueue
 	id = id
 
 	if(!id) {
 		return "Missing arguments"
 	} 
-	return queue.get(id)
+
+
+	if(queue.get(id) < 0) {
+		return "Nothing in the queue"
+	} else {
+		return queue.get(id)
+	}
 
 
 }
