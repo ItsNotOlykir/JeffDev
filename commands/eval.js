@@ -1,6 +1,6 @@
 exports.run = async (client, message, params) => {
     if (message.author.id !== client.settings.ownerID) return;
-    
+    const msg = await message.channel.send('Evaluating...');
     let evaled;
     try {
         evaled = await eval(code);
@@ -8,7 +8,7 @@ exports.run = async (client, message, params) => {
         evaled = err;
     }
     const output = util.inspect(evaled, { depth: 0 });
-    message.channel.send(`\`\`\`js\n${output}\n\`\`\``);
+    msg.edit(`\`\`\`js\n${output}\n\`\`\``);
 };
 
 exports.info = {
