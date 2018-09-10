@@ -2,7 +2,7 @@ module.exports = message => {
 	// Define client
 	const client = message.client;
 	// Check who, and the prefix being used
-	if (message.author.id === "452255697032183819") return;
+	if (message.author.id === client.id) return;
 	if (!message.content.startsWith(client.settings.prefix)) return;
 	// Define command
 	const command = message.content
