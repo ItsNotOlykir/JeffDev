@@ -1,5 +1,7 @@
 exports.run = async (client, message, params) => {
+    require('util')
     if (message.author.id !== client.settings.ownerID) return;
+    let code = params.join(" ")
     const msg = await message.channel.send('Evaluating...');
     let evaled;
     try {
