@@ -4,7 +4,6 @@ exports.run = text => {
 		return "No text inserted!"
 	} else {
 		text.split(" ")
-
 	}
 }
 exports.info = {

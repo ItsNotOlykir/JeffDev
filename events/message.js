@@ -1,10 +1,7 @@
 module.exports = message => {
-	// Define client
 	const client = message.client;
-	// Check who, and the prefix being used
 	if (message.author.id === client.id) return;
 	if (!message.content.startsWith(client.settings.prefix)) return;
-	// Define command
 	const command = message.content
 		.split(" ")[0]
 		.slice(client.settings.prefix.length)
@@ -14,10 +11,7 @@ module.exports = message => {
 	if (client.commands.has(command)) {
 		cmd = client.commands.get(command)
 	}
-	// If command, run that command
 	if (cmd) {
-
 		cmd.run(client, message, params);
-
 	}
 };

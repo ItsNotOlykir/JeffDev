@@ -5,12 +5,7 @@ exports.run = (id, info) => {
     if (!id || !info) {
         return "Missing arguments!"
     }
-
-
     return queue.get(id)
-
-
-
 }
 
 exports.info = {
